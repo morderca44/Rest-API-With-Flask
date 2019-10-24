@@ -15,7 +15,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
 
-
 # app.config['JWT_AUTH_URL_RULE'] = '/login' # zmienia end point na /login z defaultowego /auth
 jwt = JWT(app, authenticate, identity) # /auth
 # config JWT to expire within half an hour
