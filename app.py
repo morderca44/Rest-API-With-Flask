@@ -1,4 +1,4 @@
-from datetime import timedelta
+import os
 
 from flask import Flask
 from flask_jwt import JWT
@@ -10,7 +10,7 @@ from security import authenticate, identity
 from resources.store import Store, StoreList
 
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///data.db' #  oznacza to że sqlalchemy "przesiaduje" w bazie sqlite
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", 'sqlite:///data.db') #  oznacza to że sqlalchemy "przesiaduje" w bazie sqlite, environ ma dwa paramery, jeden dla DB w heroku
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
